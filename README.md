@@ -92,6 +92,37 @@ The application uses right triangle trigonometry:
 - **CanvasRenderer**: Manages canvas drawing and coordinate transformations
 - **RoomCanvas**: Vue component for interactive visualization
 
+## Deployment
+
+This application is configured for automatic deployment to GitHub Pages via GitHub Actions.
+
+### Automatic Deployment
+
+The application automatically deploys when you push to the `main` branch. The deployment process:
+
+1. **Builds** the Vue.js application
+2. **Runs** type checking and linting
+3. **Deploys** to GitHub Pages
+
+### Manual Deployment
+
+To deploy manually:
+
+```bash
+npm run build
+```
+
+The built files will be in the `dist/` directory, ready for deployment to any static hosting service.
+
+### GitHub Pages Setup
+
+To enable GitHub Pages:
+
+1. Go to your repository settings
+2. Navigate to "Pages" section
+3. Select "GitHub Actions" as the source
+4. The workflow will automatically deploy on pushes to main
+
 ## Future Improvements
 
 For potential enhancements and performance optimizations, see [FUTURE_IMPROVEMENTS.md](./FUTURE_IMPROVEMENTS.md).
