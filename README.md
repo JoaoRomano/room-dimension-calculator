@@ -81,10 +81,39 @@ npm run build
 
 ### Geometric Algorithm
 
-The application uses right triangle trigonometry:
+The application uses right triangle trigonometry to calculate room dimensions based on wall references:
 
-- **Width Calculation**: Creates two right triangles per corner to find maximum room extent parallel to selected wall
-- **Length Calculation**: Creates one right triangle per corner using perpendicular direction to find full room span
+#### Width Calculation
+
+The width calculation determines the maximum room extent parallel to the selected wall reference. The algorithm creates right triangles to find the optimal width measurement:
+
+![Width Calculation Diagram](./docs/width_calculation.png)
+
+**Process:**
+
+1. **Identify Wall Points**: Locate the two wall points that define the reference wall (bottom-left and bottom-right red points)
+2. **Create Right Triangles**: For each corner point, create a right triangle (blue lines) with:
+   - One leg parallel to the reference wall
+   - One leg perpendicular to the reference wall
+   - Hypotenuse connecting the corner to the wall point
+3. **Calculate Maximum Width**: The width is the maximum horizontal distance between any two points parallel to the reference wall
+4. **Compare Measurements**: The algorithm compares `currentWidth` (green line) with `newWidth` (blue line) to determine the optimal width measurement
+
+#### Length Calculation
+
+The length calculation determines the full room span perpendicular to the selected wall reference:
+
+![Length Calculation Diagram](./docs/length_calculation.png)
+
+**Process:**
+
+1. **Establish Reference Point**: Use a `thirdPoint` (bottom-left red point) as the reference for perpendicular measurements
+2. **Create Right Triangle**: Form a right triangle with:
+   - One leg from `thirdPoint` to `wallPoint` (blue horizontal line labeled "currentLength (0)")
+   - One leg from `thirdPoint` to `cornerPoint` (blue vertical line labeled "newLength")
+   - Right angle at `thirdPoint` (blue square symbol)
+3. **Calculate Perpendicular Distance**: The length is the maximum perpendicular distance from the reference wall
+4. **Handle Edge Cases**: When `currentLength` is 0 (as shown in the diagram), the algorithm uses the `newLength` calculation for the final length measurement
 
 ### Key Components
 
